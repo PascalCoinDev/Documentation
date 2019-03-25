@@ -16,13 +16,46 @@ pre {
 
 body {
     font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-size: 14px !important;
 }
 
 h1, h2, h3 {
     font-family: 'Roboto Slab', serif;
 }
 
-
 ul.sidebar-links > ul.sidebar-group-items > li > a {
     background-color: red;
+}
+
+.sidebar-link {
+    font-size: 14px;
+    padding-left: 16px !important;
+    color: #2f3542 !important;
+}
+.sidebar-link:hover {
+    color: #2f3542 !important;
+    text-decoration: underline;
+}
+
+.active.sidebar-link {
+    text-decoration: underline;
+}
+
+.sidebar-group-items > li > .active.sidebar-link {
+    border-left-color: #2f3542 !important;
+    color: #2f3542 !important;
+    background-color: rgba(47,53,66, .2);
+    margin-left: 0rem;
+}
+
+.sidebar-group-items > li > li > .active.sidebar-link {
+    color: #2f3542 !important;
+    border-left-color: #2f3542 !important;
+    text-decoration: underline;
+    background-color: rgba(47,53,66, .1);
+    margin-left: -16px;
+}
+
+.sidebar-heading.open {
+padding-left: 16px;
 }

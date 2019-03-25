@@ -78,7 +78,6 @@ function getPIPsSidebar (groupA, introductionA) {
 
         }
     });
-    console.log(children);
 
     return [
         {

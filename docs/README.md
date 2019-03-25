@@ -4,7 +4,7 @@ heroImage: https://www.pascalcoin.org/images/logo.png
 heroText: PascalCoin Documentation
 tagline: PascalCoin is an instant, zero-fee, infinitely scalable, and decentralized cryptocurrency with advanced privacy and smart contract capabilities.
 actionText: Get Started →
-actionLink: /guide/
+actionLink: /guides/
 features:
 - title: Infinite Scaling
   details: All-in-one cryptocurrency (payment, privacy, and smart contract) with a theoretical limit of 72,000 TPS.

@@ -3,15 +3,24 @@ const fs = require('fs');
 module.exports = {
     title: 'PascalCoin Documentation',
     description: 'Just playing around',
+    markdown: {
+        lineNumbers: true,
+        config: md => {
+            // use more markdown-it plugins!
+            md.use(require('markdown-it-checkbox'))
+        }
+    },
     themeConfig: {
         nav: [
             { text: 'Home', link: '/' },
-            { text: 'Guides', link: '/guide/' },
+            { text: 'Guides', link: '/guides/' },
+            { text: 'Development', link: '/development/' },
             { text: 'PIPS', link: '/pips/' },
         ],
         sidebar: {
-            '/guide/': getThemeSidebar('Guides', 'Getting started'),
+            '/guides/': getSidebar('Guides', 'guides'),
             '/pips/': getPIPsSidebar('PIPs', 'PIPs'),
+            '/development/': getSidebar('Development', 'development'),
         },
         displayAllHeaders: false,
         // Assumes GitHub. Can also be a full GitLab url.
@@ -33,24 +42,27 @@ module.exports = {
         // custom text for edit link. Defaults to "Edit this page"
         editLinkText: 'Help us improve this page!'
     },
-    plugins: ['@vuepress/back-to-top']
+    plugins: ['@vuepress/back-to-top', 'vuepress-plugin-reading-time']
 }
 
-function getThemeSidebar (groupA, introductionA) {
+function getSidebar (title, folder) {
+    let children = [];
+    fs.readdirSync(__dirname + '/../' + folder).forEach(file => {
+        if(file !== 'README.md' && !fs.lstatSync(__dirname + '/../' + folder + '/' + file).isDirectory()) {
+            children.push(file.replace('.md', ''));
+        }
+    });
+
+
     return [
         {
-            title: groupA,
+            title: title,
             collapsable: false,
             sidebarDepth: 3,
-            children: [
-                'getting_started',
-                'mining',
-                'JSON-RPC-API'
-            ]
+            children: children
         },
     ]
 }
-
 
 function getPIPsSidebar (groupA, introductionA) {
     let children = [];
@@ -73,9 +85,7 @@ function getPIPsSidebar (groupA, introductionA) {
                         foundTitle = true;
                     }
                 });
-
             children.push(child);
-
         }
     });
 

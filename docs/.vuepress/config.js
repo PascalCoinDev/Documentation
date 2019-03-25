@@ -55,16 +55,22 @@ function getThemeSidebar (groupA, introductionA) {
 function getPIPsSidebar (groupA, introductionA) {
     let children = [];
     fs.readdirSync(__dirname + '/../pips').forEach(file => {
-        if(file !== 'README.md') {
+        if(file !== 'README.md' && !fs.lstatSync(__dirname + '/../pips/' + file).isDirectory()) {
 
             let child = [file.replace('.md', ''), file.replace('.md', '')];
             var stop = false;
+            var foundPip = false;
+            var foundTitle = false;
             var lines = fs.readFileSync(__dirname + '/../pips/' + file, 'utf-8')
                 .split('\n')
                 .filter((l) => {
-                    if(l[0] === '#' && !stop) {
-                        child[1] = l.substr(1).trim();
-                        stop = true;
+                    if(l.trim().substr(0, 4) === 'PIP:' && !foundPip) {
+                        child[1] = 'PIP ' + parseInt(l.trim().substr(4).replace('PIP:', '').replace('PIP-', ''), 10);
+                        foundPip = true;
+                    }
+                    if(l.trim().substr(0, 6) === 'Title:' && !foundTitle) {
+                        child[1] += ': ' + l.trim().substr(6);
+                        foundTitle = true;
                     }
                 });
 

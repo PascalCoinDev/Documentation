@@ -14,7 +14,9 @@
     "vuepress-plugin-reading-time": "^0.1.1"
   },
   "dependencies": {
+    "markdown-it-abbr": "^1.0.4",
     "markdown-it-checkbox": "^1.1.0",
+    "markdown-it-toc": "^1.1.0",
     "webpack-dev-middleware": "^3.6.0"
   }
 }

@@ -7,7 +7,9 @@ module.exports = {
         lineNumbers: true,
         config: md => {
             // use more markdown-it plugins!
-            md.use(require('markdown-it-checkbox'))
+            md.use(require('markdown-it-checkbox'));
+            md.use(require('markdown-it-toc'));
+            md.use(require('markdown-it-abbr'));
         }
     },
     themeConfig: {
